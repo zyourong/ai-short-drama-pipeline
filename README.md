@@ -21,7 +21,6 @@ ai-short-drama-pipeline/
 
 > 剧本一键输入 → 人物 / 场景 / 道具资产自动生成
 
-![总览效果](examples/overview.png)
 
 ## ✨ 核心特性
 
