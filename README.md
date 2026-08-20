@@ -1,10 +1,13 @@
+## 📂 目录结构
+
+```
 ai-short-drama-pipeline/
-├── examples/              ← 这个文件夹你创建了吗？放图片的
+├── examples/
 │   ├── overview.png
 │   ├── char_demo.png
 │   ├── scene_demo.png
 │   └── prop_demo.png
-├── workflows/             ← 这个文件夹应该有 4 个 json 文件
+├── workflows/
 │   ├── prompt_workflow.json
 │   ├── char_workflow.json
 │   ├── prop_workflow.json
@@ -13,6 +16,7 @@ ai-short-drama-pipeline/
 ├── README.md
 ├── .gitignore
 └── LICENSE
+```
 
 # AI Short Drama Asset Pipeline
 
