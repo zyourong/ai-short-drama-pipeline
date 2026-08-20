@@ -3,7 +3,6 @@
 ```
 ai-short-drama-pipeline/
 ├── examples/
-│   ├── overview.png
 │   ├── char_demo.png
 │   ├── scene_demo.png
 │   └── prop_demo.png
