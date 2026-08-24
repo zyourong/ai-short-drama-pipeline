@@ -97,34 +97,34 @@ python reporting.py
 ### 通用指标（所有资产）
 | 指标 | 说明 | 合格标准 |
 |------|------|----------|
-| `brisque_score` | 无参考画质评分（越低越好） | - |
-| `blur_score` | 拉普拉斯模糊检测（越高越清晰） | - |
-| `iqa_pass` | 画质是否合格 | - |
-| `clip_score` | CLIP图文匹配度 | ≥0.26 |
-| `clip_pass` | CLIP语义是否合格 | - |
+| `brisque_score` | 无参考画质评分（越低越好） | **< 45** |
+| `blur_score` | 拉普拉斯模糊检测（越高越清晰） | **> 50** |
+| `iqa_pass` | 画质是否合格 | brisque<45 **且** blur>50 |
+| `clip_score` | CLIP图文匹配度 | **≥ 0.26** |
+| `clip_pass` | CLIP语义是否合格 | clip_score ≥ 0.26 |
 
 ### 人物专属
 | 指标 | 说明 | 合格标准 |
 |------|------|----------|
-| `keypoint_count` | YOLOv8-pose人体关键点数量 | =17（完整） |
-| `integrity_pass` | 人体完整性是否合格 | - |
-| `intra_clip_consistency` | 1×4横排多视角CLIP一致性 | ≥0.70 |
-| `intra_face_consistency` | InsightFace人脸一致性（需下载模型） | - |
+| `keypoint_count` | YOLOv8-pose人体关键点数量 | **= 17**（必须完整） |
+| `integrity_pass` | 人体完整性是否合格 | keypoint_count == 17 |
+| `intra_clip_consistency` | 1×4横排多视角CLIP一致性 | **≥ 0.70** |
+| `intra_face_consistency` | InsightFace人脸一致性（需下载模型） | **≥ 0.72** |
 
 ### 道具专属
 | 指标 | 说明 | 合格标准 |
 |------|------|----------|
-| `has_text` | 是否检测到文字 | - |
-| `detected_text` | OCR识别的文字内容 | - |
-| `text_lang_pass` | 文字语种校验（亚洲风格→中文为主） | - |
-| `text_keyword_pass` | 关键词校验（包含核心关键词） | - |
-| `text_pass` | 文字综合是否合格 | - |
+| `has_text` | 是否检测到文字 | —（信息项） |
+| `detected_text` | OCR识别的文字内容 | —（信息项） |
+| `text_lang_pass` | 文字语种校验 | 亚洲风格：中文占比 **≥ 30%**；欧美风格：英文占比 **≥ 50%** |
+| `text_keyword_pass` | 关键词校验 | 包含核心关键词即合格 |
+| `text_pass` | 文字综合是否合格 | text_lang_pass **且** text_keyword_pass |
 
 ### 场景专属
 | 指标 | 说明 | 合格标准 |
 |------|------|----------|
-| `group_consistency` | 四宫格2×2多视图CLIP一致性 | ≥0.65 |
-| `scene_color_consistency` | HSV直方图颜色一致性 | ≥0.70 |
+| `group_consistency` | 四宫格2×2多视图CLIP一致性 | **≥ 0.65** |
+| `scene_color_consistency` | HSV直方图颜色一致性 | **≥ 0.40**（四视图内容差异大，0.70过严） |
 
 ## 📈 假设检验
 
@@ -165,20 +165,6 @@ python reporting.py
 
 - **[综合质量评估报告](reports/综合报告_无法言说的秘密_完整版.html)** — 人物/道具/场景三类资产的完整质检结果，含合格率统计、散点图分布、综合结论与优化建议
 - **[假设检验对比报告](reports/假设检验对比报告_无法言说的秘密_完整版.html)** — 新剧本资产与历史基准值的曼-惠特尼U检验对比，12项指标自动判断批次质量是否达标
-
-## 🔍 质检指标合格标准
-
-### 通用指标（所有资产）
-
-| 指标 | 英文标识 | 预期标准（合格阈值） | 说明 |
-|------|---------|-------------------|------|
-| BRISQUE画质评分 | `brisque_score` | **< 45** | 无参考画质评分，基于自然场景统计，越低越好 |
-| 拉普拉斯清晰度 | `blur_score` | **> 50** | 拉普拉斯算子边缘方差，越高越清晰 |
-| 画质综合判定 | `iqa_pass` | brisque<45 **且** blur>50 | 两项同时满足才判定画质合格 |
-| CLIP图文匹配度 | `clip_score` | **≥ 0.26** | CLIP模型图像与提示词余弦相似度，越高匹配越好 |
-| CLIP语义判定 | `clip_pass` | clip_score ≥ 0.26 | 语义对齐合格判定 |
-
-> 人物/道具/场景专属指标（人体关键点=17、OCR文字语种校验、多视图CLIP一致性等）的合格标准详见 `core_eval.py` 源码及上方报告示例。
 
 ## 📄 License
 
