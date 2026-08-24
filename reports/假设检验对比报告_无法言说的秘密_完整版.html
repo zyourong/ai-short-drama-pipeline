@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>假设检验对比报告 - RunningHub_Outputs_无法言说的秘密_完整版</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 24px; }
+.header h1 { font-size: 28px; margin-bottom: 8px; }
+.header .subtitle { font-size: 14px; opacity: 0.9; }
+.summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.card .label { font-size: 13px; color: #888; margin-bottom: 6px; }
+.card .value { font-size: 28px; font-weight: bold; }
+.card.pass .value { color: #52c41a; }
+.card.fail .value { color: #ff4d4f; }
+.card.warn .value { color: #faad14; }
+.section { background: white; border-radius: 10px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.section h2 { font-size: 20px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; }
+table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+th { background: #fafafa; font-weight: 600; color: #555; }
+tr:hover { background: #f9f9f9; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500; }
+.badge.pass { background: #f6ffed; color: #52c41a; border: 1px solid #b7eb8f; }
+.badge.fail { background: #fff2f0; color: #ff4d4f; border: 1px solid #ffccc7; }
+.badge.warn { background: #fffbe6; color: #faad14; border: 1px solid #ffe58f; }
+.better { color: #52c41a; font-weight: 600; }
+.worse { color: #ff4d4f; font-weight: 600; }
+.conclusion-box { padding: 16px; border-radius: 8px; margin-top: 16px; }
+.conclusion-box.pass { background: #f6ffed; border: 1px solid #b7eb8f; }
+.conclusion-box.fail { background: #fff2f0; border: 1px solid #ffccc7; }
+.conclusion-box h3 { margin-bottom: 8px; }
+.metric-name { font-weight: 500; }
+.direction { font-size: 11px; color: #999; }
+.footer { text-align: center; padding: 20px; color: #999; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+<h1>假设检验对比报告</h1>
+<div class="subtitle">新剧本「RunningHub_Outputs_无法言说的秘密_完整版」 vs 基准值（当前项目全量质检结果）</div>
+<div class="subtitle" style="margin-top:8px;">对比时间：2026-08-22 23:39:56 | 显著性水平 α = 0.05</div>
+</div>
+
+<div class="summary-cards">
+<div class="card pass">
+<div class="label">最终结论</div>
+<div class="value">符合要求</div>
+</div>
+<div class="card pass">
+<div class="label">指标合格率</div>
+<div class="value">100.0%</div>
+</div>
+<div class="card">
+<div class="label">对比指标数</div>
+<div class="value">12</div>
+</div>
+<div class="card">
+<div class="label">合格指标数</div>
+<div class="value" style="color:#52c41a;">12</div>
+</div>
+</div>
+
+<div class="section">
+<h2>人物资产对比 <span class="badge pass">合格</span></h2>
+<p style="color:#666;font-size:14px;margin-bottom:12px;">人物所有指标均符合要求（无显著差异或优于基准）</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>方向</th>
+<th>基准均值</th>
+<th>新剧本均值</th>
+<th>差异</th>
+<th>p值</th>
+<th>显著性</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="metric-name" title="无参考图像质量评估指标，基于自然场景统计。取值范围0-100，分数越低表示图像失真越少、画质越好。基准值约50-85为可接受范围。">BRISQUE画质评分<br><span style="font-size:11px;color:#999;">brisque_score</span></td>
+<td class="direction">越低越好</td>
+<td>50.116</td>
+<td>51.722</td>
+<td><span class="worse">+1.606</span></td>
+<td>0.3652</td>
+<td><span class="badge pass">不显著</span></td>
+<td><span class="badge pass">相当</span></td>
+</tr><tr>
+<td class="metric-name" title="通过拉普拉斯算子计算图像边缘的方差，衡量图像清晰程度。数值越高表示边缘越锐利、图像越清晰；数值过低表示图像模糊。">拉普拉斯清晰度<br><span style="font-size:11px;color:#999;">blur_score</span></td>
+<td class="direction">越高越好</td>
+<td>559.907</td>
+<td>464.033</td>
+<td><span class="worse">-95.874</span></td>
+<td>0.1124</td>
+<td><span class="badge pass">不显著</span></td>
+<td><span class="badge pass">相当</span></td>
+</tr><tr>
+<td class="metric-name" title="使用CLIP模型计算图像与提示词文本的余弦相似度，衡量生成图片是否符合提示词描述。取值范围0-1，≥0.26判定为合格，越高表示图文匹配越好。">CLIP图文匹配度<br><span style="font-size:11px;color:#999;">clip_score</span></td>
+<td class="direction">越高越好</td>
+<td>0.306</td>
+<td>0.299</td>
+<td><span class="worse">-0.008</span></td>
+<td>0.3035</td>
+<td><span class="badge pass">不显著</span></td>
+<td><span class="badge pass">相当</span></td>
+</tr><tr>
+<td class="metric-name" title="使用YOLOv8-pose模型检测人体17个关键点（COCO标准：鼻、眼、耳、肩、肘、腕、髋、膝、踝）。必须检测到全部17个关键点才判定为人体完整，少于17个表示人物有截断或缺失。">人体关键点数量<br><span style="font-size:11px;color:#999;">keypoint_count</span></td>
+<td class="direction">越高越好</td>
+<td>17.000</td>
+<td>17.000</td>
+<td><span class="better">+0.000</span></td>
+<td>nan</td>
+<td><span class="badge pass">不显著</span></td>
+<td><span class="badge pass">相当</span></td>
+</tr><tr>
+<td class="metric-name" title="将人物1×4横排图裁剪为4个区域（特写、正视、侧视、后视），计算相邻区域的CLIP特征余弦相似度，衡量同一角色在不同视图下的一致性。≥0.70判定为合格。">分区域CLIP一致性<br><span style="font-size:11px;color:#999;">intra_clip_consistency</span></td>
+<td class="direction">越高越好</td>
+<td>0.763</td>
+<td>0.785</td>
+<td><span class="better">+0.021</span></td>
+<td>0.0353</td>
+<td><span class="badge fail">显著</span></td>
+<td><span class="badge pass">优于基准</span></td>
+</tr><tr>
+<td class="metric-name" title="使用InsightFace人脸识别模型，提取人物1×4横排图中第1格（特写）和第2格（正视图）的人脸特征向量，计算余弦相似度，衡量同一角色在特写与正视图下的人脸是否一致。≥0.72判定为合格。">人脸一致性<br><span style="font-size:11px;color:#999;">intra_face_consistency</span></td>
+<td class="direction">越高越好</td>
+<td>0.827</td>
+<td>0.824</td>
+<td><span class="worse">-0.002</span></td>
+<td>0.8415</td>
+<td><span class="badge pass">不显著</span></td>
+<td><span class="badge pass">相当</span></td>
+</tr></tbody>
+</table>
+</div>
+<div class="section">
+<h2>道具资产对比 <span class="badge pass">合格</span></h2>
+<p style="color:#666;font-size:14px;margin-bottom:12px;">道具所有指标均符合要求（无显著差异或优于基准）</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>方向</th>
+<th>基准均值</th>
+<th>新剧本均值</th>
+<th>差异</th>
+<th>p值</th>
+<th>显著性</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="metric-name" title="无参考图像质量评估指标，基于自然场景统计。取值范围0-100，分数越低表示图像失真越少、画质越好。基准值约50-85为可接受范围。">BRISQUE画质评分<br><span style="font-size:11px;color:#999;">brisque_score</span></td>
+<td class="direction">越低越好</td>
+<td>85.897</td>
+<td>49.216</td>
+<td><span class="better">-36.681</span></td>
+<td>0.0000</td>
+<td><span class="badge fail">显著</span></td>
+<td><span class="badge pass">优于基准</span></td>
+</tr><tr>
+<td class="metric-name" title="通过拉普拉斯算子计算图像边缘的方差，衡量图像清晰程度。数值越高表示边缘越锐利、图像越清晰；数值过低表示图像模糊。">拉普拉斯清晰度<br><span style="font-size:11px;color:#999;">blur_score</span></td>
+<td class="direction">越高越好</td>
+<td>63.052</td>
+<td>63.482</td>
+<td><span class="better">+0.430</span></td>
+<td>0.2222</td>
+<td><span class="badge pass">不显著</span></td>
+<td><span class="badge pass">相当</span></td>
+</tr><tr>
+<td class="metric-name" title="使用CLIP模型计算图像与提示词文本的余弦相似度，衡量生成图片是否符合提示词描述。取值范围0-1，≥0.26判定为合格，越高表示图文匹配越好。">CLIP图文匹配度<br><span style="font-size:11px;color:#999;">clip_score</span></td>
+<td class="direction">越高越好</td>
+<td>0.318</td>
+<td>0.326</td>
+<td><span class="better">+0.008</span></td>
+<td>0.0410</td>
+<td><span class="badge fail">显著</span></td>
+<td><span class="badge pass">优于基准</span></td>
+</tr></tbody>
+</table>
+</div>
+<div class="section">
+<h2>场景资产对比 <span class="badge pass">合格</span></h2>
+<p style="color:#666;font-size:14px;margin-bottom:12px;">场景所有指标均符合要求（无显著差异或优于基准）</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>方向</th>
+<th>基准均值</th>
+<th>新剧本均值</th>
+<th>差异</th>
+<th>p值</th>
+<th>显著性</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="metric-name" title="无参考图像质量评估指标，基于自然场景统计。取值范围0-100，分数越低表示图像失真越少、画质越好。基准值约50-85为可接受范围。">BRISQUE画质评分<br><span style="font-size:11px;color:#999;">brisque_score</span></td>
+<td class="direction">越低越好</td>
+<td>29.770</td>
+<td>28.693</td>
+<td><span class="better">-1.077</span></td>
+<td>0.7121</td>
+<td><span class="badge pass">不显著</span></td>
+<td><span class="badge pass">相当</span></td>
+</tr><tr>
+<td class="metric-name" title="通过拉普拉斯算子计算图像边缘的方差，衡量图像清晰程度。数值越高表示边缘越锐利、图像越清晰；数值过低表示图像模糊。">拉普拉斯清晰度<br><span style="font-size:11px;color:#999;">blur_score</span></td>
+<td class="direction">越高越好</td>
+<td>84.065</td>
+<td>91.600</td>
+<td><span class="better">+7.535</span></td>
+<td>0.4738</td>
+<td><span class="badge pass">不显著</span></td>
+<td><span class="badge pass">相当</span></td>
+</tr><tr>
+<td class="metric-name" title="使用CLIP模型计算图像与提示词文本的余弦相似度，衡量生成图片是否符合提示词描述。取值范围0-1，≥0.26判定为合格，越高表示图文匹配越好。">CLIP图文匹配度<br><span style="font-size:11px;color:#999;">clip_score</span></td>
+<td class="direction">越高越好</td>
+<td>0.290</td>
+<td>0.275</td>
+<td><span class="worse">-0.014</span></td>
+<td>0.1058</td>
+<td><span class="badge pass">不显著</span></td>
+<td><span class="badge pass">相当</span></td>
+</tr></tbody>
+</table>
+</div>
+<div class="section">
+<h2>最终结论</h2>
+<div class="conclusion-box pass">
+<h3>✅ 新剧本资产质量符合要求</h3>
+<p style="margin-top:8px;">
+在 12 个对比指标中，12 个合格（无显著差异或优于基准），
+合格率 100.0%。
+</p>
+
+</div>
+</div>
+
+<div class="section">
+<h2>📖 指标详细说明</h2>
+<p style="color:#666;font-size:14px;margin-bottom:16px;">本报告中使用的所有质检指标的含义、计算方式和合格标准如下：</p>
+<table>
+<thead>
+<tr>
+<th style="width:18%;">指标名称</th>
+<th style="width:12%;">英文标识</th>
+<th style="width:15%;">单位/方向</th>
+<th>详细说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BRISQUE画质评分</strong></td>
+<td style="font-family:monospace;font-size:12px;color:#666;">brisque_score</td>
+<td>分（越低越好）</td>
+<td style="font-size:13px;line-height:1.6;">无参考图像质量评估指标，基于自然场景统计。取值范围0-100，分数越低表示图像失真越少、画质越好。基准值约50-85为可接受范围。</td>
+</tr><tr>
+<td><strong>拉普拉斯清晰度</strong></td>
+<td style="font-family:monospace;font-size:12px;color:#666;">blur_score</td>
+<td>方差值（越高越清晰）</td>
+<td style="font-size:13px;line-height:1.6;">通过拉普拉斯算子计算图像边缘的方差，衡量图像清晰程度。数值越高表示边缘越锐利、图像越清晰；数值过低表示图像模糊。</td>
+</tr><tr>
+<td><strong>CLIP图文匹配度</strong></td>
+<td style="font-family:monospace;font-size:12px;color:#666;">clip_score</td>
+<td>相似度（≥0.26合格）</td>
+<td style="font-size:13px;line-height:1.6;">使用CLIP模型计算图像与提示词文本的余弦相似度，衡量生成图片是否符合提示词描述。取值范围0-1，≥0.26判定为合格，越高表示图文匹配越好。</td>
+</tr><tr>
+<td><strong>人体关键点数量</strong></td>
+<td style="font-family:monospace;font-size:12px;color:#666;">keypoint_count</td>
+<td>个（必须=17完整）</td>
+<td style="font-size:13px;line-height:1.6;">使用YOLOv8-pose模型检测人体17个关键点（COCO标准：鼻、眼、耳、肩、肘、腕、髋、膝、踝）。必须检测到全部17个关键点才判定为人体完整，少于17个表示人物有截断或缺失。</td>
+</tr><tr>
+<td><strong>分区域CLIP一致性</strong></td>
+<td style="font-family:monospace;font-size:12px;color:#666;">intra_clip_consistency</td>
+<td>相似度（≥0.70合格）</td>
+<td style="font-size:13px;line-height:1.6;">将人物1×4横排图裁剪为4个区域（特写、正视、侧视、后视），计算相邻区域的CLIP特征余弦相似度，衡量同一角色在不同视图下的一致性。≥0.70判定为合格。</td>
+</tr><tr>
+<td><strong>人脸一致性</strong></td>
+<td style="font-family:monospace;font-size:12px;color:#666;">intra_face_consistency</td>
+<td>余弦相似度（≥0.72合格）</td>
+<td style="font-size:13px;line-height:1.6;">使用InsightFace人脸识别模型，提取人物1×4横排图中第1格（特写）和第2格（正视图）的人脸特征向量，计算余弦相似度，衡量同一角色在特写与正视图下的人脸是否一致。≥0.72判定为合格。</td>
+</tr></tbody>
+</table>
+</div>
+
+<div class="section">
+<h2>📊 假设检验方法说明</h2>
+<div style="font-size:14px;line-height:1.8;color:#444;">
+<p><strong>检验方法：</strong>曼-惠特尼U检验（Mann-Whitney U Test），属于非参数检验，不要求数据服从正态分布，适用于对比两组独立样本的分布是否存在显著差异。</p>
+<p><strong>原假设 H₀：</strong>新剧本资产指标与基准值无显著差异（两组数据来自同一分布）。</p>
+<p><strong>备择假设 H₁：</strong>新剧本资产指标与基准值存在显著差异。</p>
+<p><strong>显著性水平 α：</strong>0.05。当 p值 &lt; 0.05 时，拒绝原假设，认为存在显著差异；当 p值 ≥ 0.05 时，不拒绝原假设，认为无显著差异。</p>
+<p><strong>合格判定：</strong></p>
+<ul style="margin-left:20px;margin-top:8px;">
+<li>p值 ≥ 0.05 → 无显著差异 → <span class="badge pass">合格</span></li>
+<li>p值 &lt; 0.05 且新剧本优于基准 → <span class="badge pass">合格（优于基准）</span></li>
+<li>p值 &lt; 0.05 且新剧本差于基准 → <span class="badge fail">不合格（差于基准）</span></li>
+</ul>
+<p style="margin-top:12px;"><strong>指标方向：</strong>"越高越好"类指标（如CLIP匹配度、清晰度），新剧本均值高于基准视为优于；"越低越好"类指标（如BRISQUE评分），新剧本均值低于基准视为优于。</p>
+</div>
+</div>
+
+<div class="footer">
+<p>本报告基于曼-惠特尼U检验（非参数检验），显著性水平 α=0.05</p>
+<p>基准值来源：当前项目全量质检结果 | 新剧本：{output_name}</p>
+</div>
+
+</div>
+</body>
+</html>
