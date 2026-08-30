@@ -161,10 +161,16 @@ python lora_grid_analysis.py
 
 ### 报告输出
 
-网格调参生成两份报告：
+网格调参生成三份产物：
 
-1. **[完整分析报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_report.html)** — 含总览统计、11×11图片网格、4张热力图（头身比/上下比/Gram距离/综合评分）、121行完整数据表、最佳参数推荐
+1. **[完整分析报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_report.html)** — 含总览统计、11×11图片网格、4张热力图（头身比/上下比/Gram距离/综合评分）、最佳参数推荐
 2. **[11×11图片网格（独立版）](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_images.html)** — 纯图片网格，点击放大、↑↓纵向切行、←→横向切列、ESC关闭
+3. **[参考图 → 最佳参数图 对比](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/examples/reference_to_best.html)** — 风格参考图与最佳参数生成图（pw=0.6, cg=0.5）并排对比，含各项指标
+
+| 风格参考图 | 最佳参数生成图 |
+|:---:|:---:|
+| ![参考图](examples/style_reference.jpg) | ![最佳参数图](examples/best_param_pw0.6_cg0.5.jpg) |
+| 风格匹配基准 | pw=0.6, cg=0.5（综合评分0.8162） |
 
 > 综合评分权重：Gram风格距离 0.8（主要目标）+ 人体完整性 0.08 + 头身比 0.07 + 上下半身比 0.05
 
@@ -241,8 +247,9 @@ python lora_grid_analysis.py
 
 - **[综合质量评估报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/综合报告_无法言说的秘密_完整版.html)** — 人物/道具/场景三类资产的完整质检结果，含合格率统计、散点图分布、综合结论与优化建议
 - **[假设检验对比报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/假设检验对比报告_无法言说的秘密_完整版.html)** — 新剧本资产与历史基准值的曼-惠特尼U检验对比，12项指标自动判断批次质量是否达标
-- **[参数网格调参 · 完整分析报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_report.html)** — 双Lora强度11×11网格调参可视化，含头身比/上下比/Gram距离/综合评分4张热力图、可点击图片网格、121行完整数据表，自动推荐最佳参数（Gram权重0.8）
+- **[参数网格调参 · 完整分析报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_report.html)** — 双Lora强度11×11网格调参可视化，含头身比/上下比/Gram距离/综合评分4张热力图、可点击图片网格，自动推荐最佳参数（Gram权重0.8）
 - **[参数网格调参 · 11×11图片网格（独立版）](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_images.html)** — 纯图片网格浏览，121张全量图，点击放大、↑↓纵向切行、←→横向切列、ESC关闭
+- **[参数网格调参 · 参考图→最佳参数图对比](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/examples/reference_to_best.html)** — 风格参考图与最佳参数生成图（pw=0.6, cg=0.5）并排对比，含Gram距离/头身比/上下比等指标
 
 ## 📄 License
 
