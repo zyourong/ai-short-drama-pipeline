@@ -241,7 +241,8 @@ python lora_grid_analysis.py
 
 - **[综合质量评估报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/综合报告_无法言说的秘密_完整版.html)** — 人物/道具/场景三类资产的完整质检结果，含合格率统计、散点图分布、综合结论与优化建议
 - **[假设检验对比报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/假设检验对比报告_无法言说的秘密_完整版.html)** — 新剧本资产与历史基准值的曼-惠特尼U检验对比，12项指标自动判断批次质量是否达标
-- **[参数网格调参报告（Lora强度示例）](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_report.html)** — 双Lora强度11×11网格调参可视化，含头身比/上下比热力图、可点击图片网格、键盘灯箱导航与121行完整数据表，自动推荐最佳参数组合
+- **[参数网格调参 · 完整分析报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_report.html)** — 双Lora强度11×11网格调参可视化，含头身比/上下比/Gram距离/综合评分4张热力图、可点击图片网格、121行完整数据表，自动推荐最佳参数（Gram权重0.8）
+- **[参数网格调参 · 11×11图片网格（独立版）](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_images.html)** — 纯图片网格浏览，121张全量图，点击放大、↑↓纵向切行、←→横向切列、ESC关闭
 
 ## 📄 License
 
