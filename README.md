@@ -159,30 +159,14 @@ python lora_grid_analysis.py
 - **完整数据表**：121行全量数据，头身比≥8.0标绿、<6.0标红
 - **参数推荐**：自动找出综合评分最高的参数组合
 
-### 效果示例
+### 报告输出
 
-**1. 完整11×11网格（121张全量图）**
+网格调参生成两份报告：
 
-X轴：国漫CG Lora强度（cg 0~1.0），Y轴：完美世界国漫风 Lora强度（pw 0~1.0）。点击任意图片放大，←→键切换，↑↓键切行，ESC关闭。最佳参数（pw=0.1, cg=0.5）标红⭐。
+1. **[完整分析报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_report.html)** — 含总览统计、11×11图片网格、4张热力图（头身比/上下比/Gram距离/综合评分）、121行完整数据表、最佳参数推荐
+2. **[11×11图片网格（独立版）](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_images.html)** — 纯图片网格，点击放大、↑↓纵向切行、←→横向切列、ESC关闭
 
-**[▶️ 11×11完整网格效果（点击打开）](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/examples/lora_grid_example.html)**
-
-| pw=0.0 / cg=0.0 | pw=0.0 / cg=1.0 | pw=1.0 / cg=0.0 | pw=1.0 / cg=1.0 |
-|:---:|:---:|:---:|:---:|
-| ![pw0_cg0](examples/grid_pw0.0_cg0.0.jpg) | ![pw0_cg1](examples/grid_pw0.0_cg1.0.jpg) | ![pw1_cg0](examples/grid_pw1.0_cg0.0.jpg) | ![pw1_cg1](examples/grid_pw1.0_cg1.0.jpg) |
-
-**2. 参考图 → 选定参数图 对比**
-
-基于风格参考图，通过121组参数网格搜索，自动找到最佳参数组合（pw=0.1, cg=0.5，综合评分0.9137）。
-
-**[▶️ 参考图→最佳参数图对比（点击打开）](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/examples/reference_to_best.html)**
-
-| 风格参考图 | 最佳参数生成图 |
-|:---:|:---:|
-| ![参考图](examples/style_reference.jpg) | ![最佳参数图](examples/best_param_pw0.1_cg0.5.jpg) |
-| 风格匹配基准 | pw=0.1, cg=0.5（综合评分0.9137） |
-
-> 完整热力图分析与121行全量数据表见 [完整报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_report.html)
+> 综合评分权重：Gram风格距离 0.8（主要目标）+ 人体完整性 0.08 + 头身比 0.07 + 上下半身比 0.05
 
 ## 🔍 质检指标说明
 
