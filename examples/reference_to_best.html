@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>参考图 → 选定参数图 对比</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; background: #f5f5f5; margin: 0; padding: 30px 20px; }
+h1 { text-align: center; color: #333; margin-bottom: 8px; }
+.subtitle { text-align: center; color: #666; margin-bottom: 30px; font-size: 15px; }
+.compare-container { display: flex; gap: 30px; max-width: 1100px; margin: 0 auto; justify-content: center; align-items: flex-start; flex-wrap: wrap; }
+.compare-card { background: white; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); overflow: hidden; flex: 1; min-width: 320px; max-width: 500px; }
+.compare-card .card-header { padding: 15px 20px; color: white; font-size: 16px; font-weight: bold; }
+.compare-card.reference .card-header { background: linear-gradient(135deg, #667eea, #764ba2); }
+.compare-card.generated .card-header { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.compare-card .card-body { padding: 15px; }
+.compare-card img { width: 100%; border-radius: 8px; display: block; }
+.compare-card .card-footer { padding: 15px 20px; background: #fafafa; border-top: 1px solid #eee; }
+.param-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 14px; }
+.param-row .label { color: #888; }
+.param-row .value { color: #333; font-weight: 500; }
+.param-row .value.highlight { color: #e74c3c; font-weight: bold; }
+.arrow-section { text-align: center; padding: 20px 0; }
+.arrow { font-size: 48px; color: #999; }
+.arrow-text { font-size: 14px; color: #666; margin-top: 5px; }
+.summary-box { max-width: 1100px; margin: 30px auto 0; background: white; border-radius: 12px; padding: 25px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+.summary-box h3 { margin-top: 0; color: #333; }
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+.metric { background: #f8f9fa; border-radius: 8px; padding: 15px; text-align: center; }
+.metric .metric-label { font-size: 13px; color: #888; margin-bottom: 5px; }
+.metric .metric-value { font-size: 22px; font-weight: bold; color: #333; }
+.metric .metric-value.good { color: #27ae60; }
+</style>
+</head>
+<body>
+<h1>🎯 参考图 → 选定参数图 对比</h1>
+<p class="subtitle">基于风格参考图，通过11×11 Lora强度网格调参，自动找到最佳参数组合</p>
+
+<div class="compare-container">
+  <div class="compare-card reference">
+    <div class="card-header">📌 风格参考图</div>
+    <div class="card-body">
+      <img src="style_reference.jpg" alt="风格参考图">
+    </div>
+    <div class="card-footer">
+      <div class="param-row"><span class="label">用途</span><span class="value">风格匹配基准</span></div>
+      <div class="param-row"><span class="label">对比方式</span><span class="value">Gram矩阵风格距离</span></div>
+    </div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 20px 0;">
+    <div class="arrow">→</div>
+    <div class="arrow-text">网格调参<br>自动寻优</div>
+  </div>
+
+  <div class="compare-card generated">
+    <div class="card-header">⭐ 最佳参数生成图</div>
+    <div class="card-body">
+      <img src="best_param_pw0.1_cg0.5.jpg" alt="最佳参数生成图">
+    </div>
+    <div class="card-footer">
+      <div class="param-row"><span class="label">完美世界Lora (pw)</span><span class="value highlight">0.1</span></div>
+      <div class="param-row"><span class="label">国漫CG Lora (cg)</span><span class="value highlight">0.5</span></div>
+      <div class="param-row"><span class="label">综合评分</span><span class="value highlight">0.9137</span></div>
+      <div class="param-row"><span class="label">网格位置</span><span class="value">第2行 第6列</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="summary-box">
+  <h3>📊 最佳参数指标</h3>
+  <div class="metrics-grid">
+    <div class="metric">
+      <div class="metric-label">综合评分</div>
+      <div class="metric-value good">0.9137</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">头身比</div>
+      <div class="metric-value">8.86</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">上下半身比</div>
+      <div class="metric-value">1.46</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Gram风格距离</div>
+      <div class="metric-value">0.3145</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">人体完整性</div>
+      <div class="metric-value good">1.0</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">搜索空间</div>
+      <div class="metric-value">11×11=121</div>
+    </div>
+  </div>
+  <p style="margin-top: 20px; color: #666; font-size: 14px; line-height: 1.6;">
+    通过对「完美世界国漫风」和「国漫CG」两个Lora模型进行0~1.0强度的11×11网格搜索（共121组参数），
+    综合评估风格匹配度（Gram距离）、头身比、上下半身比例和人体完整性，自动找到最佳参数组合：
+    <strong>pw=0.1, cg=0.5</strong>，综合评分0.9137，在121组参数中排名第一。
+  </p>
+</div>
+
+</body>
+</html>

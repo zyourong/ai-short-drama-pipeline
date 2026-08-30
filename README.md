@@ -161,17 +161,28 @@ python lora_grid_analysis.py
 
 ### 效果示例
 
-从121张网格图中选取16组代表性参数组合，可点击放大、←→键切换浏览：
+**1. 完整11×11网格（121张全量图）**
 
-**[▶️ 交互式效果示例（点击打开）](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/examples/lora_grid_example.html)**
+X轴：国漫CG Lora强度（cg 0~1.0），Y轴：完美世界国漫风 Lora强度（pw 0~1.0）。点击任意图片放大，←→键切换，↑↓键切行，ESC关闭。最佳参数（pw=0.1, cg=0.5）标红⭐。
 
-示例覆盖四角参数（pw/cg = 0/0、0/1、1/0、1/1）、中间值组合，以及自动推荐的最佳参数（pw=0.1, cg=0.5，标⭐）。点击任意图片可放大查看，使用键盘 ← → 切换前后图片，ESC 关闭。
+**[▶️ 11×11完整网格效果（点击打开）](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/examples/lora_grid_example.html)**
 
 | pw=0.0 / cg=0.0 | pw=0.0 / cg=1.0 | pw=1.0 / cg=0.0 | pw=1.0 / cg=1.0 |
 |:---:|:---:|:---:|:---:|
 | ![pw0_cg0](examples/grid_pw0.0_cg0.0.jpg) | ![pw0_cg1](examples/grid_pw0.0_cg1.0.jpg) | ![pw1_cg0](examples/grid_pw1.0_cg0.0.jpg) | ![pw1_cg1](examples/grid_pw1.0_cg1.0.jpg) |
 
-> 完整11×11全量网格与热力图分析见 [完整报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_report.html)
+**2. 参考图 → 选定参数图 对比**
+
+基于风格参考图，通过121组参数网格搜索，自动找到最佳参数组合（pw=0.1, cg=0.5，综合评分0.9137）。
+
+**[▶️ 参考图→最佳参数图对比（点击打开）](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/examples/reference_to_best.html)**
+
+| 风格参考图 | 最佳参数生成图 |
+|:---:|:---:|
+| ![参考图](examples/style_reference.jpg) | ![最佳参数图](examples/best_param_pw0.1_cg0.5.jpg) |
+| 风格匹配基准 | pw=0.1, cg=0.5（综合评分0.9137） |
+
+> 完整热力图分析与121行全量数据表见 [完整报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_report.html)
 
 ## 🔍 质检指标说明
 
