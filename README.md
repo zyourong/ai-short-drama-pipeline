@@ -14,7 +14,7 @@
 - 🔄 **自动返工机制**：自动检测人体不完整图片，找到源提示词重新提交生成，覆盖不合格图片并记录返工日志
 - 📊 **可视化报告**：人物/道具/场景独立报告 + 综合报告 + 假设检验对比报告，含指标说明和动态优化建议
 - 📈 **假设检验对比**：基于曼-惠特尼U检验(Mann-Whitney U)，将新剧本资产与基准值对比，判断批次质量是否达标
-- 🎛️ **Lora网格调参**：ComfyUI For Loop双Lora强度网格生成(11×11) + Python自动分析头身比/上下半身比/风格距离，输出可交互HTML报告
+- 🎛️ **参数网格调参**：ComfyUI For Loop多参数网格生成(11×11) + Python自动分析头身比/上下半身比/风格距离，根据参考图找到最佳参数组合，输出可交互HTML报告
 - 📦 **标准化交付**：自动按命名集分类归档，资产与剧本实体一一对应（如`叶凡的玉佩.jpg`），可直接对接后期剪辑管线
 
 ## 📂 模块架构（7个核心模块）
@@ -27,7 +27,7 @@
 | 自动返工 | `rework.py` | 检测人体不完整→找到源提示词→重新提交API生成→覆盖不合格图→记录返工日志 |
 | 报告生成 | `reporting.py` | 人物/道具/场景独立报告 + 综合报告，含指标说明和动态结论 |
 | 统计分析 | `analysis.py` | 基准值管理 + 曼-惠特尼U检验假设对比 + 假设检验报告生成 |
-| Lora调参 | `lora_grid_analysis.py` | 双Lora强度网格图批量分析：头身比/上下比/Gram风格距离 + 可交互HTML报告 |
+| 网格调参 | `lora_grid_analysis.py` | 多参数强度网格图批量分析：头身比/上下比/Gram风格距离 + 最佳参数推荐 + 可交互HTML报告 |
 
 ## 📁 目录结构
 
@@ -100,15 +100,17 @@ set EVAL_OUTPUT_DIR=输出目录
 python reporting.py
 ```
 
-## 🎛️ Lora网格调参
+## 🎛️ 参数网格调参（以Lora强度为例）
 
-用于系统探索两个Lora模型（如"完美世界国漫风" + "国漫CG"）不同强度组合对人物比例和风格的影响，找到最佳参数搭配。
+用于系统探索生成参数（如Lora强度、采样步数、CFG Scale、Denoise等）不同组合对人物比例和风格的影响。**核心目标：根据给定参考图，找到符合要求的最佳参数组合**，包括风格匹配度、头身比、上下半身比例等关键指标。
+
+本章节以**双Lora强度网格**为示例（"完美世界国漫风" + "国漫CG"），工作流和分析脚本同样适用于其他参数的网格调参。
 
 ### 工作流生成（ComfyUI）
 
-使用 `workflows/lora_grid_workflow.json`，基于For Loop Start/End节点实现双Lora强度网格：
-- X轴：Lora A强度（0~1.0，间隔0.1，共11档）
-- Y轴：Lora B强度（0~1.0，间隔0.1，共11档）
+使用 `workflows/lora_grid_workflow.json`，基于For Loop Start/End节点实现双参数强度网格：
+- X轴：参数A强度（0~1.0，间隔0.1，共11档，示例为Lora A）
+- Y轴：参数B强度（0~1.0，间隔0.1，共11档，示例为Lora B）
 - 总计 11×11 = 121张图，自动打包为ZIP输出
 
 ### 分析脚本使用
@@ -122,8 +124,9 @@ python lora_grid_analysis.py
 脚本会自动完成：
 1. **第一遍统计**：计算所有图的 `hair_ratio`（头发区域占脸高比例）均值，推导全局固定补偿值
 2. **第二遍分析**：统一用固定补偿计算每张图的头身比、上下半身比
-3. **风格距离**：VGG16 Gram矩阵计算每张图与全量平均风格的距离
-4. **输出报告**：可交互HTML + CSV数据表
+3. **风格距离**：VGG16 Gram矩阵计算每张图与参考风格的距离
+4. **最佳参数推荐**：综合评分最高的参数组合自动标注
+5. **输出报告**：可交互HTML + CSV数据表
 
 ### 头身比计算原理
 
@@ -143,19 +146,18 @@ python lora_grid_analysis.py
 
 | 指标 | 说明 | 目标值 |
 |------|------|--------|
-| `integrity` | YOLOv8-pose人体关键点完整度（/17） | = 1.0 |
 | `head_body_ratio` | 头身比（身高/头长） | 8.0 ~ 9.0 |
 | `upper_lower_ratio` | 上下半身比例（下半身/上半身） | 1.35 ~ 1.5 |
-| `gram_style_distance` | Gram矩阵风格距离（与平均风格，越小越接近） | 越低越好 |
-| `composite_score` | 综合评分（完整性0.3+风格0.25+头身比0.25+上下比0.2） | 越高越好 |
+| `gram_style_distance` | Gram矩阵风格距离（与参考风格，越小越接近） | 越低越好 |
+| `composite_score` | 综合评分（风格0.3+头身比0.3+上下比0.2+完整性0.2） | 越高越好 |
 
 ### 报告功能
 
 - **11×11可点击网格**：点击任意图片放大查看
 - **灯箱键盘导航**：↑↓纵向切行，←→横向切列，ESC关闭
-- **5张热力图**：完整性、头身比、上下比、Gram距离、综合评分
+- **4张热力图**：头身比、上下比、Gram距离、综合评分
 - **完整数据表**：121行全量数据，头身比≥8.0标绿、<6.0标红
-- **参数推荐**：自动找出综合评分最高的Lora强度组合
+- **参数推荐**：自动找出综合评分最高的参数组合
 
 ## 🔍 质检指标说明
 
@@ -230,7 +232,7 @@ python lora_grid_analysis.py
 
 - **[综合质量评估报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/综合报告_无法言说的秘密_完整版.html)** — 人物/道具/场景三类资产的完整质检结果，含合格率统计、散点图分布、综合结论与优化建议
 - **[假设检验对比报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/假设检验对比报告_无法言说的秘密_完整版.html)** — 新剧本资产与历史基准值的曼-惠特尼U检验对比，12项指标自动判断批次质量是否达标
-- **[Lora网格调参报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_report.html)** — 双Lora强度11×11网格调参可视化，含头身比/上下比热力图、可点击图片网格、键盘灯箱导航与121行完整数据表
+- **[参数网格调参报告（Lora强度示例）](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_report.html)** — 双Lora强度11×11网格调参可视化，含头身比/上下比热力图、可点击图片网格、键盘灯箱导航与121行完整数据表，自动推荐最佳参数组合
 
 ## 📄 License
 
