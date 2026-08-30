@@ -223,7 +223,8 @@ function navigateRow(dir) {
 }
 function updateLightbox() {
     var img = images[currentIdx];
-    document.getElementById('lightboxImg').src = 'data:image/jpeg;base64,' + img.thumb;
+    var src = (img.full && img.full.length > 0) ? 'data:image/jpeg;base64,' + img.full : 'data:image/jpeg;base64,' + img.thumb;
+    document.getElementById('lightboxImg').src = src;
     var hb = (img.head_body !== null && img.head_body !== undefined) ? img.head_body.toFixed(2) : 'N/A';
     var ul = (img.upper_lower !== null && img.upper_lower !== undefined) ? img.upper_lower.toFixed(2) : 'N/A';
     var gd = (img.gram_dist !== undefined) ? img.gram_dist.toFixed(4) : 'N/A';
