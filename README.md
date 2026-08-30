@@ -159,6 +159,20 @@ python lora_grid_analysis.py
 - **完整数据表**：121行全量数据，头身比≥8.0标绿、<6.0标红
 - **参数推荐**：自动找出综合评分最高的参数组合
 
+### 效果示例
+
+从121张网格图中选取16组代表性参数组合，可点击放大、←→键切换浏览：
+
+**[▶️ 交互式效果示例（点击打开）](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/examples/lora_grid_example.html)**
+
+示例覆盖四角参数（pw/cg = 0/0、0/1、1/0、1/1）、中间值组合，以及自动推荐的最佳参数（pw=0.1, cg=0.5，标⭐）。点击任意图片可放大查看，使用键盘 ← → 切换前后图片，ESC 关闭。
+
+| pw=0.0 / cg=0.0 | pw=0.0 / cg=1.0 | pw=1.0 / cg=0.0 | pw=1.0 / cg=1.0 |
+|:---:|:---:|:---:|:---:|
+| ![pw0_cg0](examples/grid_pw0.0_cg0.0.jpg) | ![pw0_cg1](examples/grid_pw0.0_cg1.0.jpg) | ![pw1_cg0](examples/grid_pw1.0_cg0.0.jpg) | ![pw1_cg1](examples/grid_pw1.0_cg1.0.jpg) |
+
+> 完整11×11全量网格与热力图分析见 [完整报告](https://htmlpreview.github.io/?https://github.com/zyourong/ai-short-drama-pipeline/blob/master/reports/lora_grid_report.html)
+
 ## 🔍 质检指标说明
 
 ### 通用指标（所有资产）
